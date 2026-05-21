@@ -1,0 +1,20 @@
+# 配置文件（密钥绝对不传）
+config/
+.env
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+
+# 数据与日志
+data/
+logs/
+reports/
+
+# 编辑器
+.idea/
+.vscode/
+
+# 虚拟环境
+venv/
+.env
