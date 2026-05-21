@@ -1,0 +1,179 @@
+/* 自定义样式 - 股票分析看板 */
+
+/* 卡片容器 */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.dashboard-card {
+    background: var(--md-typeset-bg-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* 数据指标卡片 */
+.metric-card {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.metric-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--md-primary-fg-color);
+    line-height: 1.2;
+}
+
+.metric-label {
+    font-size: 0.9rem;
+    color: var(--md-typeset-color);
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+
+/* 涨跌颜色 */
+.up { color: #e53935; }
+.down { color: #43a047; }
+.flat { color: #757575; }
+
+/* 涨停相关 */
+.zt-tag {
+    display: inline-block;
+    background: #e53935;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.zb-tag {
+    display: inline-block;
+    background: #ff9800;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.db-tag {
+    display: inline-block;
+    background: #9e9e9e;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* 报告列表 */
+.report-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.report-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--md-border-color);
+    transition: background 0.2s;
+}
+
+.report-item:last-child {
+    border-bottom: none;
+}
+
+.report-item:hover {
+    background: var(--md-code-bg-color);
+}
+
+.report-date {
+    font-weight: 500;
+    color: var(--md-typeset-color);
+}
+
+.report-type {
+    margin-left: 0.5rem;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .metric-value {
+        font-size: 2rem;
+    }
+    
+    .dashboard-card {
+        padding: 1rem;
+    }
+}
+
+/* 统计概览 */
+.stats-overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1rem;
+    background: var(--md-code-bg-color);
+    border-radius: 8px;
+}
+
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.stat-text {
+    font-size: 0.8rem;
+    color: var(--md-typeset-color);
+    opacity: 0.7;
+}
+
+/* 报告卡片 */
+.report-card {
+    background: var(--md-typeset-bg-color);
+    border-left: 4px solid var(--md-primary-fg-color);
+    padding: 1rem 1.25rem;
+    margin: 1rem 0;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.report-card-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.report-card-meta {
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+/* 导航增强 */
+.md-nav__link[data-md-navId] {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
