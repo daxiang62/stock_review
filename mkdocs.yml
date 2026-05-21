@@ -1,0 +1,81 @@
+# MkDocs 配置文件
+site_name: 股票分析看板
+site_description: 每日股票分析报告与盘面数据看板
+site_author: Stock Analyzer
+
+# 主题配置 - 使用 Material 主题
+theme:
+  name: material
+  language: zh
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/brightness-7
+        name: 切换到深色模式
+    - scheme: slate
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/brightness-4
+        name: 切换到浅色模式
+  font:
+    text: 微软雅黑
+    code: JetBrains Mono
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+# 目录结构
+nav:
+  - 首页: index.md
+  - 股票分析报告:
+      - 2025年:
+          - 5月每日涨停:
+              - 20260522: reports/2025/05/20260522_zt_report.md
+              - 20260521: reports/2025/05/20260521_zt_report.md
+              - 20260520: reports/2025/05/20260520_zt_report.md
+              - 20260519: reports/2025/05/20260519_zt_report.md
+          - 4月每日涨停:
+              - 20260422: reports/2025/04/20260422_zt_report.md
+              - 20260421: reports/2025/04/20260421_zt_report.md
+              - 20260420: reports/2025/04/20260420_zt_report.md
+              - 20260419: reports/2025/04/20260419_zt_report.md
+  - 每日盘面分析: daily/index.md
+  - 关于: about.md
+
+# Markdown 扩展
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - attr_list
+  - md_in_html
+
+# 插件
+plugins:
+  - search:
+      lang:
+        - en
+        - zh
+
+# 额外 CSS
+extra_css:
+  - stylesheets/extra.css
+
+# 构建选项
+docs_dir: docs
+site_dir: site

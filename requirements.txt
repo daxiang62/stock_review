@@ -1,0 +1,7 @@
+akshare
+chinese-calendar
+pandas
+python-dotenv
+volcenginesdkarkruntime
+mkdocs
+mkdocs-material
