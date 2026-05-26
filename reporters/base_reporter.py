@@ -17,7 +17,7 @@ class BaseReporter(ABC):
 
     def __init__(self, report_dir: str = None):
         if report_dir is None:
-            self.report_dir = os.path.join(os.path.dirname(__file__), '..', 'reports')
+            self.report_dir = os.path.join(os.path.dirname(__file__), '..', 'docs', 'reports')
         else:
             self.report_dir = report_dir
         os.makedirs(self.report_dir, exist_ok=True)
@@ -41,7 +41,12 @@ class BaseReporter(ABC):
         :param date_str: 日期字符串
         :return: md_path 文件路径
         """
-        md_path = os.path.join(self.report_dir, f"{date_str}_{self.report_type}_report.md")
+        year = date_str[:4]
+        month = date_str[4:6]
+        target_dir = os.path.join(self.report_dir, year, month)
+        os.makedirs(target_dir, exist_ok=True)
+        
+        md_path = os.path.join(target_dir, f"{date_str}_{self.report_type}_report.md")
         with open(md_path, 'w', encoding='utf-8') as f:
             f.write(report_content)
 
