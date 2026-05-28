@@ -43,8 +43,26 @@ class BaseReporter(ABC):
         """
         year = date_str[:4]
         month = date_str[4:6]
-        target_dir = os.path.join(self.report_dir, year, month)
-        os.makedirs(target_dir, exist_ok=True)
+        
+        # 构建目录路径
+        year_dir = os.path.join(self.report_dir, year)
+        target_dir = os.path.join(year_dir, month)
+        
+        # 检查并创建年份目录
+        if not os.path.exists(year_dir):
+            os.makedirs(year_dir, exist_ok=True)
+            logger.info(f"【新的一年】已创建年份目录: {year_dir}")
+        else:
+            # 年份目录已存在，无需创建
+            logger.debug(f"年份目录已存在: {year_dir}")
+        
+        # 检查并创建月份目录
+        if not os.path.exists(target_dir):
+            os.makedirs(target_dir, exist_ok=True)
+            logger.info(f"【新的一月】已创建月份目录: {target_dir}")
+        else:
+            # 月份目录已存在，无需创建
+            logger.debug(f"月份目录已存在: {target_dir}")
         
         md_path = os.path.join(target_dir, f"{date_str}_{self.report_type}_report.md")
         with open(md_path, 'w', encoding='utf-8') as f:

@@ -15,7 +15,7 @@ class ZTReporter(BaseReporter):
 
         :param date_str: 日期字符串
         :param stock_info: 股票信息列表（格式如："- 代码 名称 涨跌幅:XX%"）
-        :param analysis_result: 分析结果
+        :param analysis_result: 分析结果（包含分类统计、未来空间排序、个股分析）
         :param kwargs: 其他参数（total_stocks: 涨停股票总数）
         :return: 格式化后的报告内容
         """
@@ -35,9 +35,11 @@ class ZTReporter(BaseReporter):
 
 ---
 
-## 📊 分析结果
-
 {analysis_result}
+
+---
+
+风险提示：本文不构成任何投资建议，股市有风险，入市需谨慎。
 
 ---
 

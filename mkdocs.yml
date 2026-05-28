@@ -42,10 +42,14 @@ nav:
   - 股票分析报告:
       - 2026年:
           - 5月每日涨停:
+              - 20260527: reports/2026/05/20260527_zt_report.md
               - 20260522: reports/2026/05/20260522_zt_report.md
               - 20260521: reports/2026/05/20260521_zt_report.md
               - 20260520: reports/2026/05/20260520_zt_report.md
-              - 20260519: reports/2026/05/20260519_zt_report.md
+          - 5月每日断板:
+              - 20260522: reports/2026/05/20260522_db_report.md
+          - 5月每日炸板:
+              - 20260522: reports/2026/05/20260522_zb_report.md
       - 2025年:
           - 5月每日涨停:
               - 20260522: reports/2025/05/20260522_zt_report.md
@@ -70,6 +74,7 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
+      toc_depth: 2
   - attr_list
   - md_in_html
 

@@ -177,3 +177,9 @@
     align-items: center;
     gap: 0.5rem;
 }
+
+/* 保留 Markdown 换行 - 最优雅的解决方案 */
+.md-typeset p,
+.md-typeset li {
+    white-space: pre-line;
+}

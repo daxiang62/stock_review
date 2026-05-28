@@ -10,6 +10,7 @@ from analyzers import ZTStockAnalyzer
 from reporters import ZTReporter
 from utils.trading_date_utils import get_today_trading_date, get_last_trading_date
 from utils.log_utils import get_logger
+from utils.report_nav_updater import ReportNavUpdater
 
 logger = get_logger("daily_analyze")
 
@@ -23,9 +24,9 @@ def generate_report(date_str):
         logger.error("未获取到涨停数据")
         return None
     
-    # 准备分析数据（只取前五支股票）
+    # 准备分析数据
     stock_info = []
-    for _, row in zt_df.head(5).iterrows():
+    for _, row in zt_df.iterrows():
         stock_info.append(f"- {row['代码']} {row['名称']} 涨跌幅:{row['涨跌幅']:.2f}%")
     
     stock_data_text = "\n".join(stock_info)
@@ -33,7 +34,7 @@ def generate_report(date_str):
     # 调用豆包分析
     logger.info(f"开始分析 {len(stock_info)} 只股票")
     zt_analyzer = ZTStockAnalyzer()
-    result = zt_analyzer.analyze(stock_data_text)
+    result = zt_analyzer.analyze_batches(date_str=date_str, stock_data=stock_data_text, limit=30)
     
     # 使用报告生成器
     reporter = ZTReporter()
@@ -47,10 +48,11 @@ def generate_report(date_str):
     return report
 
 def save_report(report, date_str):
-    """保存报告到文件"""
+    """保存报告到文件并更新yaml目录"""
     reporter = ZTReporter()
     md_path = reporter.save_report(report, date_str)
-    logger.info(f"✅ 报告已保存: {md_path}")
+    # 更新 mkdocs.yml 导航 - 使用 ReportNavUpdater 类
+    ReportNavUpdater()
     return md_path
 
 def main():
