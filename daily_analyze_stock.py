@@ -58,11 +58,15 @@ def save_report(report, date_str):
 def main():
     parser = argparse.ArgumentParser(description='每日股票分析')
     parser.add_argument('--today', action='store_true', help='分析今天的数据（默认分析最近交易日）')
+    parser.add_argument('--date', type=str, help='指定日期分析，格式：YYYYMMDD，例如 20260522')
     args = parser.parse_args()
     
     # 获取日期
     try:
-        if args.today:
+        if args.date:
+            date_str = args.date
+            msg = f"分析指定日期: {date_str}"
+        elif args.today:
             date_str = get_today_trading_date()
             msg = f"分析今天: {date_str}"
         else:

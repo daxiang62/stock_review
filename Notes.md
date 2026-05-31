@@ -21,8 +21,11 @@ git checkout 分支名    # 切换分支
 # 更新代码
 git add .
 git commit -m "更新内容"
-git pull
-git push
+git pull      # 拉取最新代码
+git push     # 上传到 GitHub 
+
+git config --global http.timeout 600     # 设置超时时间，解决 408 错误
+git config --global --unset http.timeout  # 取消设置超时时间
 
 
 # mkdocs 相关命令

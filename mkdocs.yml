@@ -42,6 +42,7 @@ nav:
   - 股票分析报告:
       - 2026年:
           - 5月每日涨停:
+              - 20260529: reports/2026/05/20260529_zt_report.md
               - 20260527: reports/2026/05/20260527_zt_report.md
               - 20260522: reports/2026/05/20260522_zt_report.md
               - 20260521: reports/2026/05/20260521_zt_report.md
