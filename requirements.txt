@@ -9,7 +9,7 @@ chinese_calendar==1.11.0
 python-dotenv==1.2.2
 
 # 豆包 AI API
-volcenginesdkarkruntime
+volcengine-python-sdk[ark]
 
 # MkDocs 文档网站
 mkdocs==1.6.1
