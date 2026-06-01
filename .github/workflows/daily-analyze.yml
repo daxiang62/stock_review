@@ -36,6 +36,12 @@ jobs:
           fetch-depth: 0  # 拉取完整历史记录（用于 git 操作）
           ref: master  # 指定检出 master 分支
       
+      # 步骤 1.5：设置时区为北京时间
+      - name: Set timezone
+        run: |
+          sudo timedatectl set-timezone Asia/Shanghai
+          date
+      
       # 步骤 2：设置 Python 环境
       - name: Setup Python
         uses: actions/setup-python@v5  # 使用官方的 Python setup action
@@ -60,6 +66,8 @@ jobs:
           echo "ARK_API_KEY=${{ secrets.ARK_API_KEY }}" > config/.env
           # 添加 API 基础 URL
           echo "ARK_BASE_URL=https://ark.cn-beijing.volces.com/api/v3" >> config/.env
+          # 添加默认模型（与本地一致）
+          echo "ARK_DEFAULT_MODEL=doubao-seed-2-0-pro-260215" >> config/.env
       
       # 步骤 6：运行股票分析
       - name: Run stock analysis

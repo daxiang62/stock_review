@@ -1,7 +1,17 @@
 """A股交易日工具"""
 import datetime
+import os
 from typing import Optional
 from chinese_calendar import is_workday, is_holiday
+
+# 强制使用时区（优先用北京时间）
+os.environ['TZ'] = 'Asia/Shanghai'
+try:
+    import time
+    time.tzset()
+except (AttributeError, OSError):
+    # Windows 不支持 tzset，没关系
+    pass
 
 def _is_stock_trading_day(date: datetime.date) -> bool:
     """判断某天是否是A股交易日"""
