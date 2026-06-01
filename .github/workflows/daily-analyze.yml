@@ -34,6 +34,7 @@ jobs:
         with:
           persist-credentials: false  # 不持久化凭证（更安全）
           fetch-depth: 0  # 拉取完整历史记录（用于 git 操作）
+          ref: master  # 指定检出 master 分支
       
       # 步骤 2：设置 Python 环境
       - name: Setup Python
@@ -77,8 +78,8 @@ jobs:
           git status
           echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
       
-      # 步骤 9：提交报告到 main 分支
-      - name: Commit docs to main branch
+      # 步骤 9：提交报告到 master 分支
+      - name: Commit docs to master branch
         if: steps.git-check.outputs.changed > 0  # 只有当有变更时才执行
         run: |
           git add docs/
