@@ -40,7 +40,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5  # 使用官方的 Python setup action
         with:
-          python-version: '3.11'  # Python 版本
+          python-version: '3.12'  # Python 版本
           cache: 'pip'  # 缓存 pip 依赖，加速下次运行
       
       # 步骤 3：安装依赖
