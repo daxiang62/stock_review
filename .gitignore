@@ -9,7 +9,6 @@ __pycache__/
 # 数据与日志
 data/
 logs/
-reports/
 
 # 编辑器
 .idea/
