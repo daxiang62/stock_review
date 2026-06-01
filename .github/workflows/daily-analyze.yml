@@ -71,7 +71,7 @@ jobs:
       
       # 步骤 6：运行股票分析
       - name: Run stock analysis
-        run: python daily_analyze_stock.py  # 执行主脚本，生成报告
+        run: python daily_analyze_stock.py --today  # 执行主脚本，分析当天数据，生成报告
       
       # 步骤 7：配置 Git
       - name: Configure Git
