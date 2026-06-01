@@ -1,15 +1,15 @@
 """豆包API调用工具 - 优化版"""
 import os
 from typing import Optional, List, Dict, Any, Iterator
+from volcenginesdkarkruntime import Ark
 
 # 导入日志工具
 from .log_utils import get_logger
 logger = get_logger(__name__)
 
-try:
-    from volcenginesdkarkruntime import Ark
-except ImportError:
-    raise ImportError("请安装 volcenginesdkarkruntime: pip install volcenginesdkarkruntime")
+
+
+
 
 # 尝试加载配置文件
 try:
