@@ -1,7 +1,16 @@
-akshare
-chinese-calendar
-pandas
-python-dotenv
-volcenginesdkarkruntime
-mkdocs
-mkdocs-material
+# 股票数据分析依赖
+akshare==1.18.60
+pandas==3.0.2
+
+# 交易日历
+chinese_calendar==1.11.0
+
+# 配置文件管理
+python-dotenv==1.2.2
+
+# 豆包 AI API
+volcengine-python-sdk==5.0.26
+
+# MkDocs 文档网站
+mkdocs==1.6.1
+mkdocs-material==9.7.6

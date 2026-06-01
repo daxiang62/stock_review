@@ -1,0 +1,94 @@
+# 每日股票分析 + 自动部署 Workflow
+name: Daily Stock Analysis and Deploy  # Workflow 名称，在 Actions 界面显示
+
+# 触发条件
+on:
+  # 定时触发
+  schedule:
+    # Cron 表达式：分 时 日 月 周
+    # 0   - 第 0 分钟
+    # 9   - UTC 9 点 = 北京时间 17 点
+    # *   - 每天
+    # *   - 每月
+    # 1-5 - 周一到周五（工作日）
+    - cron: '0 9 * * 1-5'  # UTC 9:00 = 北京时间 17:00，工作日
+  
+  # 允许在 GitHub 界面手动触发（方便测试）
+  workflow_dispatch:
+
+# 权限配置
+permissions:
+  contents: write  # 允许修改仓库内容（提交代码、推送）
+
+# 任务定义
+jobs:
+  # 分析 + 部署任务
+  analyze-and-deploy:
+    runs-on: ubuntu-latest  # 在最新版 Ubuntu 系统上运行
+    
+    # 步骤列表
+    steps:
+      # 步骤 1：检出代码
+      - name: Checkout
+        uses: actions/checkout@v4  # 使用官方的 checkout action
+        with:
+          persist-credentials: false  # 不持久化凭证（更安全）
+          fetch-depth: 0  # 拉取完整历史记录（用于 git 操作）
+      
+      # 步骤 2：设置 Python 环境
+      - name: Setup Python
+        uses: actions/setup-python@v5  # 使用官方的 Python setup action
+        with:
+          python-version: '3.11'  # Python 版本
+          cache: 'pip'  # 缓存 pip 依赖，加速下次运行
+      
+      # 步骤 3：安装依赖
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip  # 升级 pip
+          pip install -r requirements.txt  # 安装项目依赖
+      
+      # 步骤 4：创建配置目录
+      - name: Create config directory
+        run: mkdir -p config  # 创建 config 文件夹（如果不存在）
+      
+      # 步骤 5：创建 .env 文件
+      - name: Create .env file
+        run: |
+          # 从 GitHub Secrets 读取 API Key 并写入 .env
+          echo "ARK_API_KEY=${{ secrets.ARK_API_KEY }}" > config/.env
+          # 添加 API 基础 URL
+          echo "ARK_BASE_URL=https://ark.cn-beijing.volces.com/api/v3" >> config/.env
+      
+      # 步骤 6：运行股票分析
+      - name: Run stock analysis
+        run: python daily_analyze_stock.py  # 执行主脚本，生成报告
+      
+      # 步骤 7：配置 Git
+      - name: Configure Git
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+      
+      # 步骤 8：检查是否有变更
+      - name: Check for changes
+        id: git-check  # 步骤 ID，用于后续引用
+        run: |
+          git status
+          echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
+      
+      # 步骤 9：提交报告到 main 分支
+      - name: Commit docs to main branch
+        if: steps.git-check.outputs.changed > 0  # 只有当有变更时才执行
+        run: |
+          git add docs/
+          git commit -m "Auto-update: stock analysis report $(date +'%Y-%m-%d')"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      
+      # 步骤 10：部署到 GitHub Pages
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force  # 强制部署（覆盖 gh-pages 分支）
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
