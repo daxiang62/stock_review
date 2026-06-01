@@ -91,6 +91,7 @@ jobs:
         if: steps.git-check.outputs.changed > 0  # 只有当有变更时才执行
         run: |
           git add docs/
+          git add mkdocs.yml  # 导航配置也可能变化
           git commit -m "Auto-update: stock analysis report $(date +'%Y-%m-%d')"
           git push
         env:
