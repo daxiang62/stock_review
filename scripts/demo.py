@@ -6,7 +6,7 @@ from volcenginesdkarkruntime import Ark
 
 client = Ark(
     base_url='https://ark.cn-beijing.volces.com/api/v3',
-    api_key="ark-1a06c418-7b4d-4ed6-88d1-9eb047a25733-7e3b4",
+    api_key=os.getenv("ARK_API_KEY"),
 )
 
 tools = [{
