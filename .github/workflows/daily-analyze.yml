@@ -80,14 +80,20 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
       
-      # 步骤 8：检查是否有变更
+      # 步骤 8：部署到 GitHub Pages（gh-deploy内置token不受影响）
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force  # 强制部署（覆盖 gh-pages 分支）
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      # 步骤 9：检查是否有变更
       - name: Check for changes
         id: git-check  # 步骤 ID，用于后续引用
         run: |
           git status
           echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
       
-      # 步骤 9：提交报告到 master 分支【删除PAT环境变量，原生token直接push】
+      # 步骤 10：提交报告到 master 分支【删除PAT环境变量，原生token直接push】
       - name: Commit docs to master branch
         if: steps.git-check.outputs.changed > 0  # 只有当有变更时才执行
         run: |
@@ -95,9 +101,3 @@ jobs:
           git add mkdocs.yml  # 导航配置也可能变化
           git commit -m "Auto-update: stock analysis report $(date +'%Y-%m-%d')" || echo "No file changes, skip commit"
           git push
-      
-      # 步骤 10：部署到 GitHub Pages（gh-deploy内置token不受影响）
-      - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force  # 强制部署（覆盖 gh-pages 分支）
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
