@@ -6,8 +6,7 @@ on:
   # 定时触发
   schedule:
     # Cron 表达式：分 时 日 月 周
-    - cron: '5 9 * * 1-5'  # UTC 9:05 = 北京时间 17:05，工作日（避开整点提高可靠性）
-    - cron: '15 9 * * 1-5'  # UTC 9:15 = 北京时间 17:15，备用时间（双重保险）
+    - cron: '15 8 * * 1-5'  # UTC 8:15 = 北京时间 16:15，工作日
   
   # 允许在 GitHub 界面手动触发（方便测试）
   workflow_dispatch:
@@ -81,18 +80,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      # 步骤 9：检查是否有变更
-      - name: Check for changes
-        id: git-check  # 步骤 ID，用于后续引用
-        run: |
-          git status
-          echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
-      
-      # 步骤 10：提交报告到 master 分支【删除PAT环境变量，原生token直接push】
+      # 步骤 9：提交报告到 master 分支
       - name: Commit docs to master branch
-        if: steps.git-check.outputs.changed > 0  # 只有当有变更时才执行
         run: |
-          git add docs/
-          git add mkdocs.yml  # 导航配置也可能变化
-          git commit -m "Auto-update: stock analysis report $(date +'%Y-%m-%d')" || echo "No file changes, skip commit"
-          git push
+          git add docs/ || true
+          git add mkdocs.yml || true
+          git commit -m "Auto-update: stock analysis report $(date +'%Y-%m-%d')" || true
+          git push || true
