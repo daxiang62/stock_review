@@ -29,7 +29,7 @@ jobs:
         with:
           persist-credentials: true  # 开启自动注入GITHUB_TOKEN凭证，第一种方案核心
           fetch-depth: 0  # 拉取完整历史记录（用于 git 操作）
-          ref: master  # 指定检出 master 分支
+          ref: main  # 指定检出 main 分支
       
       # 步骤 1.5：设置时区为北京时间
       - name: Set timezone
@@ -80,8 +80,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      # 步骤 9：提交报告到 master 分支
-      - name: Commit docs to master branch
+      # 步骤 9：提交报告到 main 分支
+      - name: Commit docs to main branch
         run: |
           git add docs/ || true
           git add mkdocs.yml || true
