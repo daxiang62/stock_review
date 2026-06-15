@@ -42,6 +42,7 @@ nav:
   - 股票分析报告:
       - 2026年:
           - 6月每日涨停:
+              - 20260615: reports/2026/06/20260615_zt_report.md
               - 20260612: reports/2026/06/20260612_zt_report.md
               - 20260611: reports/2026/06/20260611_zt_report.md
               - 20260610: reports/2026/06/20260610_zt_report.md
