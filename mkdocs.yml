@@ -41,7 +41,29 @@ nav:
   - 首页: index.md
   - 股票分析报告:
       - 2026年:
+          - 7月每日涨停:
+              - 20260706: reports/2026/07/20260706_zt_report.md
+              - 20260703: reports/2026/07/20260703_zt_report.md
+              - 20260702: reports/2026/07/20260702_zt_report.md
+              - 20260701: reports/2026/07/20260701_zt_report.md
           - 6月每日涨停:
+              - 20260630: reports/2026/06/20260630_zt_report.md
+              - 20260629: reports/2026/06/20260629_zt_report.md
+              - 20260626: reports/2026/06/20260626_zt_report.md
+              - 20260625: reports/2026/06/20260625_zt_report.md
+              - 20260624: reports/2026/06/20260624_zt_report.md
+              - 20260623: reports/2026/06/20260623_zt_report.md
+              - 20260622: reports/2026/06/20260622_zt_report.md
+              - 20260618: reports/2026/06/20260618_zt_report.md
+              - 20260617: reports/2026/06/20260617_zt_report.md
+              - 20260616: reports/2026/06/20260616_zt_report.md
+              - 20260615: reports/2026/06/20260615_zt_report.md
+              - 20260612: reports/2026/06/20260612_zt_report.md
+              - 20260611: reports/2026/06/20260611_zt_report.md
+              - 20260610: reports/2026/06/20260610_zt_report.md
+              - 20260609: reports/2026/06/20260609_zt_report.md
+              - 20260608: reports/2026/06/20260608_zt_report.md
+              - 20260605: reports/2026/06/20260605_zt_report.md
               - 20260604: reports/2026/06/20260604_zt_report.md
               - 20260603: reports/2026/06/20260603_zt_report.md
               - 20260602: reports/2026/06/20260602_zt_report.md
