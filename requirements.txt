@@ -2,6 +2,10 @@
 akshare==1.18.60
 pandas==3.0.2
 
+# 行情数据源 + 技术指标（选股工具 screener 使用）
+mootdx==0.11.7
+MyTT==2.9.3
+
 # 交易日历
 chinese_calendar==1.11.0
 

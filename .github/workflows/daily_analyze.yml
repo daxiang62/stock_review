@@ -62,7 +62,7 @@ jobs:
           # 添加 API 基础 URL
           echo "ARK_BASE_URL=https://ark.cn-beijing.volces.com/api/v3" >> config/.env
           # 添加默认模型（与本地一致）
-          echo "ARK_DEFAULT_MODEL=doubao-seed-2-0-pro-260215" >> config/.env
+          echo "ARK_DEFAULT_MODEL=doubao-seed-2-1-pro-260628" >> config/.env
       
       # 步骤 6：运行股票分析
       - name: Run stock analysis
