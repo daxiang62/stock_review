@@ -42,6 +42,7 @@ nav:
   - 股票分析报告:
       - 2026年:
           - 7月每日涨停:
+              - 20260709: reports/2026/07/20260709_zt_report.md
               - 20260708: reports/2026/07/20260708_zt_report.md
               - 20260707: reports/2026/07/20260707_zt_report.md
               - 20260706: reports/2026/07/20260706_zt_report.md
